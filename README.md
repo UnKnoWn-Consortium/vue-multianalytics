@@ -443,10 +443,10 @@ Currently, supported modules are the following
 Name: `ga`
 Config:
 ```javascript
-appName: 'Test', // Mandatory
-appVersion: '0.1', // Mandatory
-trackingId: 'YOUR_UA', // Mandatory
-ecommerce: true, // Enables ecommerce support (optional)
+appName: 'Test' // Mandatory
+appVersion: '0.1' // Mandatory
+trackingId: 'YOUR_UA' // Mandatory
+ecommerce: true // Enables ecommerce support (optional)
 config: {} // Initial GA config. Defaults to 'auto'
 debug: true // Whether or not display console logs debugs (optional)
 ```
@@ -469,6 +469,13 @@ Config:
 ```javascript
 token: 'YOUR_TOKEN'
 debug: true // Whether or not display console logs debugs (optional)
+```
+Special options for Hybrid Mobile App Events: 
+Have to be used with Facebook Mobile App SDK
+Reference: <https://developers.facebook.com/docs/app-events/hybrid-app-events/>
+```javascript
+mobileBridge: true //(optional)
+appId: 'YOUR_FACEBOOK_APP_ID' // Required only if mobileBridge is true (optional)
 ```
 Supported Events: `trackView`, `trackEvent`
 
