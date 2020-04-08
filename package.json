@@ -1,6 +1,6 @@
 {
 	"name": "vue-multianalytics",
-	"version": "1.11.7",
+	"version": "1.11.8",
 	"description": "A vue multianalytics tool",
 	"main": "./dist/vue-multianalytics.min.js",
 	"author": "Glovoapp, Adrian Latorre, Francisco Zurita",
@@ -19,19 +19,17 @@
 		"url": "https://github.com/Glovo/vue-multianalytics/issues"
 	},
 	"devDependencies": {
-		"babel-core": "^6.25.0",
-		"babel-loader": "^6.2.7",
-		"babel-plugin-transform-async-to-generator": "^6.24.1",
-		"babel-plugin-transform-object-assign": "^6.22.0",
-		"babel-plugin-transform-runtime": "^6.23.0",
-		"babel-preset-env": "^1.6.1",
-		"babel-preset-stage-2": "^6.24.1",
-		"regenerator-runtime": "^0.11.1",
-		"vue": "^2.3.4",
-		"vue-loader": "^11.3.4",
-		"vue-router": "^2.6.0",
-		"vue-template-compiler": "^2.3.4",
-		"webpack": "^4.29.1"
+		"@babel/core": "^7.9.0",
+		"@babel/preset-env": "^7.9.5",
+		"babel-loader": "^8.1.0",
+		"regenerator-runtime": "^0.13.5",
+		"terser-webpack-plugin": "^2.3.5",
+		"vue": "^2.6.11",
+		"vue-loader": "^15.9.1",
+		"vue-router": "^3.1.6",
+		"vue-template-compiler": "^2.6.11",
+		"webpack": "^4.42.1",
+		"webpack-cli": "^3.3.11"
 	},
 	"keywords": [
 		"mixpanel",
