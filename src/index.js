@@ -17,46 +17,56 @@ const customModules = {};
  */
 
 const install = function(Vue, initConf = {}, mixin) {
-	// init Google Analytics
+	// init analytics modules
 	// We create all the modules that app will use
+	// If delay is passed in initConf, modules are not initialized
 	Vue.modulesEnabled = [];
-	for (let key in initConf.modules) {
+
+	for (const key in initConf.modules) {
 		let module;
+
 		switch (key) {
 			case types.MODULE_GA:
 				module = new GAModule();
-				module.init(initConf.modules[key]);
 				break;
 			case types.MODULE_MIXPANEL:
 				module = new MixpanelModule();
-				module.init(initConf.modules[key]);
 				break;
 			case types.MODULE_SEGMENT:
 				module = new SegmentModule();
-				module.init(initConf.modules[key]);
 				break;
 			case types.MODULE_FACEBOOK:
 				module = new FacebookModule();
-				module.init(initConf.modules[key]);
 				break;
 			case types.MODULE_MPARTICLE:
 				module = new MparticleModule();
-				module.init(initConf.modules[key]);
+				break;
 			default:
 				break;
 		}
+
+		if (initConf.autoInit) {
+			module.init(initConf.modules[key]);
+		}
+
 		if (module) {
 			Vue.modulesEnabled.push(module);
 		}
 	}
 
 	if (Object.keys(customModules).length > 0) {
-		Object.values(customModules).forEach((module, index) => {
-			let moduleInstance = new module();
-			moduleInstance.init(initConf.modules[Object.keys(customModules)[index]]);
-			Vue.modulesEnabled.push(moduleInstance);
-		});
+		Object.values(customModules)
+			.forEach(
+				(module, index) => {
+					const moduleInstance = new module();
+					if (!initConf.delay) {
+						moduleInstance.init(initConf.modules[Object.keys(customModules)[index]]);
+					}
+					Vue.modulesEnabled.push(moduleInstance);
+				}
+			);
 	}
+
 	// Handle vue-router if defined
 	if (initConf.routing && initConf.routing.vueRouter) {
 		initVueRouterGuard(Vue, initConf.routing);

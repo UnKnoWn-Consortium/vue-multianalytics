@@ -1,9 +1,11 @@
 export default class BasicModule {
 
   constructor(name, config = {}) {
-    this.name = name
-    this.config = config
+    this.name = name;
+    this.config = config;
   }
+
+  init () { /* Overriden by modules */ }
 
   trackView () { /* Overriden by modules */ }
 
@@ -31,14 +33,16 @@ export default class BasicModule {
 
   ecommerceTrackEvent () { /* Overriden by modules */ }
   
-  addTransaction () { /* Overriden by modules */}
+  addTransaction () { /* Overriden by modules */ }
 
-  addItem () { /* Overriden by modules */}
+  addItem () { /* Overriden by modules */ }
 
-  trackTransaction () { /* Overriden by modules */}
+  trackTransaction () { /* Overriden by modules */ }
 
-  clearTransactions () { /* Overriden by modules */}
+  clearTransactions () { /* Overriden by modules */ }
 
-  reset () { /* Overriden by modules */}
+  disable () { /* Overriden by modules */ }
+
+  reset () { /* Overriden by modules */ }
 
 }
