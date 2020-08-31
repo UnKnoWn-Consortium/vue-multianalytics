@@ -1,5 +1,6 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -7,34 +8,36 @@ module.exports = {
     'vue-multianalytics.min': './src/index.js'
   },
   output: {
-    path: "./dist",
+    path: "/dist",
     filename: "[name].js",
     libraryTarget: 'commonjs2'
   },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        include: /\.min\.js$/,
+        test: /\.js(\?.*)?$/i,
+      }),
+    ],
+  },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      include: /\.min\.js$/,
-      compress: {
-        warnings: false
-      }
-    }),
+
   ],
   resolve: {
-    extensions: [ '', '.js', '.json' ]
+    extensions: [ '.js', '.json' ]
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        query: {
-          presets: [ 'env', 'stage-2' ],
-          plugins: [
-            "transform-async-to-generator",
-            "transform-object-assign",
-          ],
-        },
-        exclude: /node_modules/
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
       }
     ]
   }
